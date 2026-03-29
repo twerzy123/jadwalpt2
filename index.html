@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PT. JOKOWI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <h1 class="app-title">PT. JOKOWI</h1>
+      <p id="role-badge" class="text-xs px-3 py-1 rounded-full inline-block"></p>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="text-right">
+        <p id="user-name" class="text-sm font-medium"></p>
+        <p id="user-role" class="text-xs text-teal-400"></p>
+        <button id="logout-btn" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-1 justify-end w-full mt-1">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+      <i class="fas fa-user-circle text-4xl text-teal-400"></i>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <div id="karyawan-view" class="view space-y-6">
+      <h1 class="section-title">Dashboard Karyawan</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 cursor-pointer hover:border-teal-500 transition" onclick="switchSubView('absensi-karyawan')">
+          <div class="flex justify-between items-center mb-2">
+            <p class="text-slate-400 text-xs">Absensi Bulan Ini</p>
+            <i class="fas fa-calendar-check text-teal-400"></i>
+          </div>
+          <p class="text-xl font-bold text-slate-100">22 / 24 Hari</p>
+        </div>
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 cursor-pointer hover:border-green-500 transition" onclick="switchSubView('gaji-karyawan')">
+          <div class="flex justify-between items-center mb-2">
+            <p class="text-slate-400 text-xs">Estimasi Gaji</p>
+            <i class="fas fa-wallet text-green-400"></i>
+          </div>
+          <p class="text-xl font-bold text-slate-100">Rp 4.500.000</p>
+        </div>
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 cursor-pointer hover:border-red-500 transition" onclick="switchSubView('pelanggaran-karyawan')">
+          <div class="flex justify-between items-center mb-2">
+            <p class="text-slate-400 text-xs">Poin Pelanggaran</p>
+            <i class="fas fa-exclamation-triangle text-red-400"></i>
+          </div>
+          <p class="text-xl font-bold text-slate-100">0 Poin</p>
+        </div>
+      </div>
+
+      <div id="absensi-karyawan" class="sub-view card">
+        <h2 class="font-semibold text-lg mb-4 text-teal-400"><i class="fas fa-clock mr-2"></i>Riwayat Jam Absensi</h2>
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr><th>Tanggal</th><th>Jam Masuk</th><th>Jam Pulang</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>30 Mar 2026</td><td>06:55</td><td>-- : --</td><td><span class="status-hadir">Tepat Waktu</span></td></tr>
+              <tr><td>28 Mar 2026</td><td>06:45</td><td>15:05</td><td><span class="status-hadir">Tepat Waktu</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="gaji-karyawan" class="sub-view card hidden">
+        <h2 class="font-semibold text-lg mb-4 text-green-400"><i class="fas fa-money-check-alt mr-2"></i>Rincian Slip Gaji</h2>
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between p-3 bg-slate-800 rounded-xl"><span>Gaji Pokok</span><span class="font-semibold">Rp 4.000.000</span></div>
+          <div class="flex justify-between p-3 bg-slate-700 rounded-xl text-base font-bold"><span>Total Diterima</span><span class="text-green-400">Rp 4.450.000</span></div>
+        </div>
+      </div>
+
+      <div id="pelanggaran-karyawan" class="sub-view card hidden">
+        <h2 class="font-semibold text-lg mb-4 text-red-400"><i class="fas fa-gavel mr-2"></i>Daftar Pelanggaran</h2>
+        <div class="text-center py-6 text-slate-500"><i class="fas fa-shield-alt text-4xl mb-3 text-slate-700"></i><p>Bagus! Kamu tidak memiliki catatan pelanggaran.</p></div>
+      </div>
+    </div>
+
+    <div id="chat-karyawan-view" class="view hidden space-y-6">
+      <h1 class="section-title">Pesan Masuk</h1>
+      <div class="card space-y-4">
+        <div class="flex items-start gap-3">
+          <i class="fas fa-user-tie text-2xl text-teal-400 mt-1"></i>
+          <div class="bg-slate-800 p-4 rounded-2xl rounded-tl-none max-w-[80%] border border-slate-700">
+            <p class="text-xs font-bold text-teal-400 mb-1">Ahmad Supervisor (Atasan)</p>
+            <p class="text-sm text-slate-200">Budi, tolong setelah istirahat siang nanti handle Line Produksi B sebentar ya, operator di sana sedang izin sakit.</p>
+            <p class="text-xs text-slate-500 text-right mt-2">10:15</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fas fa-bullhorn text-2xl text-purple-400 mt-1"></i>
+          <div class="bg-slate-800 p-4 rounded-2xl rounded-tl-none max-w-[80%] border border-slate-700">
+            <p class="text-xs font-bold text-purple-400 mb-1">Pengumuman Pabrik</p>
+            <p class="text-sm text-slate-200">Diberitahukan kepada seluruh karyawan bahwa besok akan diadakan maintenance mesin rutin mulai jam 15:00 WIB.</p>
+            <p class="text-xs text-slate-500 text-right mt-2">08:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="admin-view" class="view hidden space-y-6">
+      <h1 class="section-title">Dashboard Administrator</h1>
+      <div class="flex gap-2 overflow-x-auto pb-2">
+        <button class="tab-btn active" onclick="switchAdminTab(this, 'adm-absensi')">Kelola Absensi</button>
+        <button class="tab-btn" onclick="switchAdminTab(this, 'adm-gaji')">Kelola Gaji</button>
+        <button class="tab-btn" onclick="switchAdminTab(this, 'adm-pelanggaran')">Pelanggaran</button>
+      </div>
+
+      <div id="adm-absensi" class="admin-tab-content card">
+        <h2 class="font-semibold text-teal-400 mb-4">Kehadiran Hari Ini</h2>
+        <table class="table">
+          <thead><tr><th>Karyawan</th><th>Masuk</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td>Budi Santoso</td><td>06:55</td><td><span class="status-hadir">Hadir</span></td></tr>
+            <tr><td>Siti Aminah</td><td>07:20</td><td><span class="status-terlambat">Telat</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="adm-gaji" class="admin-tab-content card hidden">
+        <h2 class="font-semibold text-green-400 mb-4">Payroll & Gaji Karyawan</h2>
+        <div class="bg-slate-800 p-4 rounded-xl flex justify-between items-center">
+          <div><p class="font-semibold">Budi Santoso</p><p class="text-green-400 font-bold">Rp 4.450.000</p></div>
+          <button class="text-xs text-teal-400 hover:text-teal-300">Edit Gaji</button>
+        </div>
+      </div>
+
+      <div id="adm-pelanggaran" class="admin-tab-content card hidden">
+        <h2 class="font-semibold text-red-400 mb-4">Daftar Pelanggaran</h2>
+        <table class="table">
+          <thead><tr><th>Nama</th><th>Pelanggaran</th><th>Poin</th></tr></thead>
+          <tbody>
+            <tr><td>Siti Aminah</td><td>Telat >3x sebulan</td><td class="text-red-400 font-bold">10</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="chat-admin-view" class="view hidden space-y-6">
+      <h1 class="section-title">Kirim Instruksi (Chat)</h1>
+      <div class="card">
+        <form class="space-y-4">
+          <div>
+            <label class="text-sm text-slate-400 block mb-2">Pilih Karyawan :</label>
+            <select class="w-full bg-slate-800 border border-slate-700 text-slate-100 p-3 rounded-xl focus:outline-none focus:border-teal-500">
+              <option>Semua Karyawan (Broadcast)</option>
+              <option>Budi Santoso (Operator Line A)</option>
+              <option>Siti Aminah (Staff Gudang)</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="text-sm text-slate-400 block mb-2">Pesan Instruksi :</label>
+            <textarea class="w-full bg-slate-800 border border-slate-700 text-slate-100 p-3 rounded-xl focus:outline-none focus:border-teal-500 h-32" placeholder="Ketik instruksi pekerjaan di sini..."></textarea>
+          </div>
+
+          <button type="button" onclick="alert('Pesan berhasil terkirim ke karyawan!')" class="w-full bg-teal-500 hover:bg-teal-600 text-slate-900 font-bold py-3 px-6 rounded-xl transition duration-300">
+            <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <a href="#" class="nav-item active" data-view="karyawan-view" id="nav-home-karyawan">
+      <i class="fas fa-home"></i><span>Home</span>
+    </a>
+    <a href="#" class="nav-item" data-view="chat-karyawan-view" id="nav-chat-karyawan">
+      <i class="fas fa-comment-dots"></i><span>Pesan</span>
+    </a>
+    
+    <a href="#" class="nav-item" data-view="admin-view" id="nav-dash-admin" style="display:none;">
+      <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-view="chat-admin-view" id="nav-chat-admin" style="display:none;">
+      <i class="fas fa-paper-plane"></i><span>Kirim Pesan</span>
+    </a>
+  </div>
+
+  <script>
+    function switchSubView(subViewId) {
+      document.querySelectorAll('.sub-view').forEach(view => view.classList.add('hidden'));
+      document.getElementById(subViewId).classList.remove('hidden');
+    }
+
+    function switchAdminTab(btnElement, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+      document.querySelectorAll('.admin-tab-content').forEach(content => content.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+    }
+  </script>
+  
+  <script src="script.js"></script>
+</body>
+</html>
